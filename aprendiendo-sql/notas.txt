@@ -1,0 +1,13 @@
+no existe clerar/cls
+
+create database "nombre bd";
+drop database "nombre bd";
+
+show databases; -> ver las bd q hay
+show tables; -> ver tablas
+
+
+use "nombre bd" -> cambiar a otra bd
+
+desc "nombre de tabla" -> describime como esta formada una tabla
+
