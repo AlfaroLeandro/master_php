@@ -9,5 +9,6 @@ show tables; -> ver tablas
 
 use "nombre bd" -> cambiar a otra bd
 
-desc "nombre de tabla" -> describime como esta formada una tabla
+desc/describe table [nombre de tabla] -> describime como esta formada una tabla
+
 
