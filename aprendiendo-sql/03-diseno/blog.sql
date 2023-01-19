@@ -30,9 +30,17 @@ CREATE TABLE entrada (
      descripcion MEDIUMTEXT,
      fecha date not null,
      CONSTRAINT pk_entrada PRIMARY KEY (id),
-     CONSTRAINT fk_usuario FOREIGN KEY (usuario_id) REFERENCES usuario(id),
-     CONSTRAINT fk_categoria FOREIGN KEY (categoria_id) REFERENCES categoria(id)
+     CONSTRAINT fk_usuario FOREIGN KEY (usuario_id) REFERENCES usuario(id) ON UPDATE CASCADE,
+     CONSTRAINT fk_categoria FOREIGN KEY (categoria_id) REFERENCES categoria(id) ON DELETE CASCADE
 )ENGINE=innoDb;
+
+/* ON DELETE CASCADE: cuando se borre el registro, que se borre el registro con el que esta relacionado*/
+/* ON UPDATE CASCADE: ^^ pero al actualizar*/
+/* ON DELETE SET NULL: cuando borro el registro al que apuntaba la clave foranea, que este se ponga en null*/
+/* ON DELETE SET DEFAULT: ^^ pero con un valor en particular*/
+/* ON DELETE NO ACTION: que no haga nada*/
+
+
 
 
 
