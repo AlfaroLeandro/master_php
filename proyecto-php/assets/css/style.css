@@ -28,13 +28,16 @@ body {
     padding: 5px;
     font-size: 14px;
     color: white;
-    background-color: red;
     box-shadow: 0px 1px 3px #ccc;
     margin-bottom: 10px;   
 }
 
 .alerta-error {
     background-color: red;
+}
+
+.alerta-exito {
+    background-color: green;
 }
 
 /*CABECERA*/

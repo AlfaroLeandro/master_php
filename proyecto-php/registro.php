@@ -5,7 +5,7 @@ if(isset($_POST))
     
     $nombre = isset($_POST['nombre'])? mysqli_real_escape_string($db,$_POST['nombre']) : false;
     $apellido = isset($_POST['apellido'])? mysqli_real_escape_string($db,$_POST['apellido']) : false;
-    $email = isset($_POST['email'])? mysqli_real_escape_string($db,$_POST['email']) : false;
+    $email = isset($_POST['email'])? mysqli_real_escape_string($db,trim($_POST['email'])) : false;
     $pass = isset($_POST['password'])? mysqli_real_escape_string($db,$_POST['password']) : false;
     //^^^ misqli_real_scape_string EVITA SQL INJECTION
     
