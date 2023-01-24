@@ -5,9 +5,9 @@ INSERT INTO categorias VALUES(null, 'Deportes');
 
 /*ENTRADAS*/
 
-INSERT INTO entradas VALUES(null, 1, 1, 'Novedades de GTA 5 Online', 'Review de GTA 5', CURDATE());
-INSERT INTO entradas VALUES(null, 1, 2, 'Novedades de Lol', 'Review de Lol', CURDATE());
-INSERT INTO entradas VALUES(null, 1, 3, 'Novedades de FIFA 23', 'Review de FIFA 23', CURDATE());
+INSERT INTO entradas VALUES(null, 2, 1, 'Novedades de GTA 5 Online', 'Review de GTA 5', CURDATE());
+INSERT INTO entradas VALUES(null, 3, 2, 'Novedades de Lol', 'Review de Lol', CURDATE());
+INSERT INTO entradas VALUES(null, 4, 3, 'Novedades de FIFA 23', 'Review de FIFA 23', CURDATE());
 
 INSERT INTO entradas VALUES(null, 3, 1, 'Novedades de Assasins Online', 'Review de Assasins', CURDATE());
 INSERT INTO entradas VALUES(null, 3, 2, 'Novedades de Wow', 'Review de Wow', CURDATE());

@@ -27,40 +27,50 @@ if(isset($_POST))
     
     if(count($errores) == 0)
     {
-        $guardar_usuario = true;
-        
-        //ACTUALIZAR EL USUARIO EN LA BD
-        
-        $sql = "UPDATE usuarios SET "
-                . "nombre = '{$_POST['nombre']}', " 
-                . "apellidos = '$apellido', " 
-                . "email = '$email' "
-                . "WHERE id = {$usuario['id']};";
-                  
-                
-        $guardar = mysqli_query($db, $sql);
-        
-//        var_dump(mysqli_error($db));
-//        die();
-        
-        if($guardar)
-        {
-            $_SESSION['usuario']['nombre'] = $nombre;
-            $_SESSION['usuario']['apellidos'] = $apellido;
-            $_SESSION['usuario']['email'] = $email;
-            $_SESSION['completado'] = "Los datos se han actualizado con exito";
-        }
-            
-        else
-            $_SESSION['errores_mis_datos']['general'] = "Fallo al actualizar";
-//        . mysqli_error($db);
-        
-    }
-    else
-    {
-        $_SESSION['errores_mis_datos'] = $errores;
-//        var_dump($_SESSION['errores']);   
-    }
+        // COMPROBAT SI EL EMAIL YA ESTA USADO
+		
+		$sql = "SELECT id, email FROM usuarios WHERE email = '$email'";
+		$email_existente = mysqli_query($db, $sql);
+		$usuario_existente = mysqli_fetch_assoc($email_existente);
+		
+        if($usuario_existente['id'] == $usuario['id'] || empty($usuario_existente))
+		{			
+			//ACTUALIZAR EL USUARIO EN LA BD
+			
+			$sql = "UPDATE usuarios SET "
+					. "nombre = '{$_POST['nombre']}', " 
+					. "apellidos = '$apellido', " 
+					. "email = '$email' "
+					. "WHERE id = {$usuario['id']};";
+					  
+					
+			$guardar = mysqli_query($db, $sql);
+			
+	//        var_dump(mysqli_error($db));
+	//        die();
+			
+			if($guardar)
+			{
+				$_SESSION['usuario']['nombre'] = $nombre;
+				$_SESSION['usuario']['apellidos'] = $apellido;
+				$_SESSION['usuario']['email'] = $email;
+				$_SESSION['completado'] = "Los datos se han actualizado con exito";
+			}
+			else
+				$_SESSION['errores_mis_datos']['general'] = "Fallo al actualizar";
+	//        . mysqli_error($db);
+		}
+		else
+		{
+			$_SESSION['errores_mis_datos']['general'] = "El email ingresado ya esta en uso!";
+	//        var_dump($_SESSION['errores']);   
+		}
+	}
+	else
+	{
+		$_SESSION['errores_mis_datos'] = $errores;
+		
+	}
 }
 
 header('Location: mis-datos.php');

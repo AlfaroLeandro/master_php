@@ -3,10 +3,10 @@
             
     <!--Caja principal-->
     <div id="principal">
-        <h1> Últimas entradas </h1>
+        <h1> Todas las entradas </h1>
         
         <?php
-            $entradas = conseguir_entradas(true);
+            $entradas = conseguir_entradas();
             if(!empty($entradas)):
                 while($entrada = mysqli_fetch_assoc($entradas)):
         ?>
@@ -27,12 +27,7 @@
         <?php      
                 endwhile;
             endif;   
-        ?>
-        
-        <div id="ver-todas">
-            <a href="entradas.php" style="color: white;">Ver todas las entradas</a>
-        </div>
-        
+        ?>        
     </div>            
 
 <?php require_once './include/pie.php'; ?>

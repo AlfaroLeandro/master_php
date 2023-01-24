@@ -8,6 +8,12 @@
 <div id="principal">
     <h1>Mis datos</h1>
     
+		<?php if(isset($_SESSION['errores_mis_datos']['general'])): ?>
+			<div class="alerta alerta-error">
+				<h3><?=$_SESSION['errores_mis_datos']['general']?></h3>
+			</div>
+		<?php endif; ?>
+
         <form action="actualizar-usuario.php" method="POST">
             
             <?php  echo (isset($_SESSION['errores_mis_datos'])?  mostrar_error($_SESSION['errores_mis_datos'], 'nombre') : false); ?>
