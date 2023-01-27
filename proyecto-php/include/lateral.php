@@ -1,7 +1,16 @@
 <!--Sidebar-->
     <aside id="sidebar">
         
-        
+        <div id="buscador" class="bloque">
+			<h3>Busqueda</h3>
+			
+			<form action="buscar.php" method="GET">
+				<input type="text" name="busqueda">
+				<input type="submit" value="Buscar"
+			</form>
+		</div>
+		
+		
         <?php if(isset($_SESSION['usuario'])): ?>
             <div id="usuario-logeado" class="bloque">
                 <h3><?="Bienvenido " . $_SESSION['usuario']['nombre'] . " " . $_SESSION['usuario']['apellidos']?></h3>

@@ -1,10 +1,11 @@
-<?php require_once './include/conexion.php'?>
-<?php require_once './include/helpers.php'?>
-
 <?php
-	$cat = conseguir_categoria($_GET['id']);
+require_once './include/conexion.php';
+require_once './include/helpers.php';
+
+if(isset($_GET['busqueda'])):
 	
-	if(!isset($cat)):
+	$entradas_buscadas = conseguir_entradas(null,null, $_GET['busqueda']);
+	if(!isset($entradas_buscadas)):
 		header('Location: index.php');
 	else:		
 		require_once './include/cabecera.php'; 
@@ -13,14 +14,12 @@
 		<!--Caja principal-->
 		<div id="principal">
 		
-		
-		
-			<h1> Entradas de <?=$cat['nombre']?> </h1>
+			<h1> Entradas de "<?=$_GET['busqueda']?>" </h1>
 			
 			<?php
-				$entradas = conseguir_entradas(null, $_GET['id']);
-				if(!empty($entradas)):
-					while($entrada = mysqli_fetch_assoc($entradas)):
+				//$entradas = conseguir_entradas(null, null, $_GET['id']);
+				if(!empty($entradas_buscadas)):
+					while($entrada = mysqli_fetch_assoc($entradas_buscadas)):
 			?>
 			
 			<article class="entrada">    
@@ -51,4 +50,12 @@
 <?php 
 		require_once './include/pie.php'; 
 	endif;
-?>
+else:
+	header('Location: index.php');
+endif;
+	
+			
+	
+	
+	
+	

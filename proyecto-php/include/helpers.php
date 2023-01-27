@@ -21,7 +21,7 @@ function conseguir_categorias() {
     return ($categorias && mysqli_num_rows($categorias)>=1)? $categorias: array();
 }
 
-function conseguir_entradas($limit = null, $categoria = null)
+function conseguir_entradas($limit = null, $categoria = null, $busqueda = null)
 {
 	global $db;
     $sql = "SELECT e.*, c.nombre as categoria FROM entradas e " 
@@ -30,6 +30,9 @@ function conseguir_entradas($limit = null, $categoria = null)
    
    if(!empty($categoria))
 	   $sql.= "WHERE e.categoria_id = $categoria ";
+   
+   if(!empty($busqueda))
+	   $sql.= "WHERE e.titulo like '%$busqueda%' ";
 	
 	$sql.= "ORDER BY e.id DESC ";
 	
@@ -51,4 +54,18 @@ function conseguir_categoria($id_categoria)
     $categorias = mysqli_query($db, $sql);
     
     return ($categorias && mysqli_num_rows($categorias)>=1)? mysqli_fetch_assoc($categorias): array();
+}
+
+function conseguir_entrada($id_entrada)
+{
+	global $db;
+    $sql = "SELECT e.*, c.nombre as categoria "  
+			. "FROM entradas e INNER JOIN categorias c "
+			. "ON e.categoria_id = c.id "
+			. "WHERE e.id=$id_entrada;";
+    $entrada = mysqli_query($db, $sql);
+	
+	//SELECT e.*, c.nombre as categoria FROM entradas e INNER JOIN categorias c ON e.categoria_id = c.id WHERE c.id=4;
+	
+    return ($entrada && mysqli_num_rows($entrada)>=1)? mysqli_fetch_assoc($entrada): array();
 }
