@@ -2,9 +2,7 @@
 
 <?php
 
-require_once './controllers/UsuarioController.php';
-require_once './controllers/NotaController.php';
-
+require_once 'autoload.php';
 
 if(isset($_GET['controller']) && class_exists($_GET['controller'] . "Controller"))
 {

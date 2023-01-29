@@ -4,9 +4,9 @@
 //require_once 'categoria.php';
 //require_once 'entrada.php';
 
-/*
-require_once 'autoload.php';
 
+require_once 'autoload.php';
+/*
 $u = new Usuario();
 echo $u->nombre . "<br/>";
 echo $u->email;
@@ -18,6 +18,10 @@ echo "<br>" . $c->nombre;
 
 // ESPACIOS DE NOMBRES Y PAQUETES
 
+use MisClases\Usuario;
+use MisClases\Categoria;
+use MisClases\Entrada;
+
 class Principal {
 	public $u;
 	public $c;
@@ -25,7 +29,9 @@ class Principal {
 
 	public function __construct() 
 	{
-		$this->u = new MisClases\Usuario();
+		$this->u = new Usuario();
+		$this->c = new Categoria();
+		$this->e = new Entrada();
 	}
 
 }
@@ -33,3 +39,7 @@ class Principal {
 $p = new Principal();
 
 var_dump($p->u);
+
+$u2 = PanelAdministrador\Usuario();
+
+var_dump($u2);

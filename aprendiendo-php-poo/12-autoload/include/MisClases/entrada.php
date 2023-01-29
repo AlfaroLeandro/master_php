@@ -1,6 +1,5 @@
-
 <?php
-
+//^^HUBO UN ERROR POR QUE NO ESTA LA ETIQUITA <?PHP EN LA LINEA 1 ????!?!??!?!
 namespace MisClases; //<-- paquetes
 
 class Entrada 

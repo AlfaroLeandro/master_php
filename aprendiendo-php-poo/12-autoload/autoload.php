@@ -1,7 +1,7 @@
 <?php
 
 function app_autoloader($class) {
-	$classname = substr($class, strrpos($class, "\\") + 1);
+	$classname = "./include/$class";
 	require_once  $classname . '.php';
 }
 

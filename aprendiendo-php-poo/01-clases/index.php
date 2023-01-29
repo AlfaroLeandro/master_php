@@ -1,8 +1,7 @@
+<h1> Hola mundo POO </h1>
+
 <?php
- <h1> Hola mundo POO </h1>
-
-
-
+ 
 // Comenzamos con la programacion orientada a objetos POO
 
 // Definir una clase

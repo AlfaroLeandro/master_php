@@ -6,7 +6,7 @@ class UsuarioController {
 		require_once 'models/usuario.php'; // EL REQUIRE SE HACE DESDE EL INDEX.PHP
 
 		$usuario = new Usuario();
-		$todos_los_usuarios = $usuario->conseguirTodos();
+		$usuarios = $usuario->conseguirTodos('usuarios');
 
 		require_once 'views/usuarios/mostrar-todos.php';
 	}	
