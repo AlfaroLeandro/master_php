@@ -30,6 +30,17 @@ a:hover {
     color: red;
 }
 
+table {
+    width: 100%;
+    text-align: center;
+    border: 1px solid #555;
+}
+
+td {
+    border-top: 1px solid #ccc;
+    padding: 2px;
+}
+
 /*CONTAINER*/
 
 #container {
@@ -217,6 +228,18 @@ button,
     text-decoration: none;
 }
 
+
+.button {
+    background: #33ae3d !important;
+    font-weight: normal;
+}
+
+.button-small {
+    width: 120px; 
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 /*CENTRAL*/
 
 #central {
@@ -269,11 +292,6 @@ button,
     margin-top:5px; 
     margin-bottom: 10px;
     
-}
-
-.button {
-    background: #33ae3d !important;
-    font-weight: normal;
 }
 
 /*FOOTER*/
