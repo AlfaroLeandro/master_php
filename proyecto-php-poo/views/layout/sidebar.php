@@ -18,6 +18,7 @@
                 <input type="password" name="password"/>
 
                 <input type="submit" value="Enviar"/>
+				
             </form>
             
         <?php
@@ -42,7 +43,7 @@
                 if(isset($_SESSION['admin'])):
             ?>
                 <li> <a href="<?=BASE_URL?>categoria/index">Gestionar Categorias</a> </li>
-                <li> <a href="<?=BASE_URL?>#">Gestionar Productos</a> </li>
+                <li> <a href="<?=BASE_URL?>producto/gestion">Gestionar Productos</a> </li>
                 <li> <a href="<?=BASE_URL?>#">Gestionar Pedidos</a> </li>
                 
             <?php 
@@ -55,8 +56,12 @@
                 <li> <a href="#">Mis Pedidos</a> </li>
                 <li> <a href="<?=BASE_URL . 'usuario/logout'?>">Cerrar sesión</a> </li>
             <?php
-                endif;
+                else:
             ?>
+				<li> <a href="<?=BASE_URL . 'usuario/registro'?>">Registrate aquí</a> </li>
+			<?php
+				endif;
+			?>
         </ul>
 
     </div>                

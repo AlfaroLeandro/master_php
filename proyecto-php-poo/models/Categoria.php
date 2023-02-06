@@ -26,7 +26,11 @@ class Categoria {
     }
     
     public function getAll() {
-        $categorias = $this->db->query("SELECT * FROM categorias;");
+        $categorias = $this->db->query("SELECT * FROM categorias ORDER BY id DESC;");
         return $categorias;
     }
+	
+	public function save() {
+		$this->db->query("INSERT INTO categorias VALUES(null, '{$this->nombre}');");
+	}
 }

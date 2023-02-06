@@ -26,15 +26,19 @@
                     <li>
                         <a href="#">Inicio</a>
                     </li>
+					
+					<?php 
+						$categorias = Utils::getCategorias();
+						while($cat = $categorias->fetch_object()):
+					?>
+					
                     <li>
-                        <a href="#">Categoria 1</a>
+                        <a href="#"><?=$cat->nombre?></a>
                     </li>
-                    <li>
-                        <a href="#">Categoria 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Categoria 3</a>
-                    </li>
+					
+					<?php
+						endwhile;
+					?>
                 </ul>
             </nav>
 
