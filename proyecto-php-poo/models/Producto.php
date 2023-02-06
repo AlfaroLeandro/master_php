@@ -30,6 +30,13 @@ class Producto {
         return $save;
     }
 	
+	public function delete() {
+		$sql = "DELETE FROM productos WHERE id={$this->id}";
+		$del = $this->db->query($sql);
+		
+		return $del;
+	}
+	
 	public function getId() {
         return $this->id;
     }
@@ -64,6 +71,10 @@ class Producto {
 	
 	public function getImagen() {
         return $this->imagen;
+    }
+	
+	public function setId($id): void {
+        $this->id = $id;
     }
 	
 	public function setCategoria_id($categoria_id): void {

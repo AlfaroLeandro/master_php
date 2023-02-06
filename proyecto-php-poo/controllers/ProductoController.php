@@ -65,4 +65,22 @@ class ProductoController {
 		}
 		header("Location: " . BASE_URL . "producto/gestion");
 	}
+	
+	public function editar() {
+		var_dump($_GET);
+	}
+	
+	public function eliminar() {		
+		if(Utils::isAdmin() && isset($_GET) && isset($_GET['producto'])) {
+			
+			$producto_borrar = new Producto();
+			$producto_borrar->setId($_GET["producto"]);
+			
+			if($producto_borrar->delete())
+				$_SESSION["delete"]="complete";
+			else
+				$_SESSION["delete"]="failed";
+		}
+	header("Location: " . BASE_URL . "producto/gestion");
+	}
 }
