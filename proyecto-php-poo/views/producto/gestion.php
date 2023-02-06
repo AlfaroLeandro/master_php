@@ -4,6 +4,21 @@
 	Crear Producto
 </a>
 
+<?php
+	if(isset($_SESSION['producto']) && $_SESSION['producto'] == "complete"):
+?>
+	<strong class="alert_green"> El producto se ha añadido con éxito</strong>
+
+<?php
+	elseif(isset($_SESSION['producto']) && $_SESSION['producto'] == "failed"):
+?>
+	<strong class="alert_red"> Fallo al añadir el producto </strong>
+
+<?php
+	endif;
+	Utils::deleteSession("producto");
+?>
+
 <h2> Lista productos </h2>
 
 <table>

@@ -2,7 +2,7 @@
 
 <div class="form-container"> 
 
-	<form action="<?=BASE_URL?>producto/save" method="POST">
+	<form action="<?=BASE_URL?>producto/save" method="POST" enctype="multipart/form-data">
 
 		<label for="nombre">Nombre</label>
 		<input type="text" name="nombre" />
@@ -17,7 +17,7 @@
 		<input type="number" name="stock" min="0"/>
 		
 		<label for="categoria">Categoria</label>
-		<select>
+		<select name="categoria">
 			<?php 
 				$categorias = Utils::getCategorias();
 				while($cat = $categorias->fetch_object()):

@@ -14,11 +14,21 @@ class Producto {
     
     public function __construct() {
         $this->db = Database::connect();
+		$this->imagen = "";
     }
 	
 	public function getAll() {
 		return $this->db->query("SELECT * FROM productos");
 	}
+	
+    public function save() {
+        $sql = "INSERT INTO productos VALUES(null, {$this->categoria_id},'{$this->nombre}', '{$this->descripcion}', {$this->precio}, {$this->stock}, NULL, CURDATE(), '{$this->imagen}');";
+        $save = $this->db->query($sql);
+		
+		//echo $this->db->error;
+		//die();
+        return $save;
+    }
 	
 	public function getId() {
         return $this->id;
@@ -56,24 +66,28 @@ class Producto {
         return $this->imagen;
     }
 	
+	public function setCategoria_id($categoria_id): void {
+        $this->categoria_id = $categoria_id;
+    }
+	
 	public function setNombre($nombre): void {
-        $this->nombre = $nombre;
+        $this->nombre = $this->db->real_escape_string($nombre);
     }
 	
 	public function setDescripcion ($descripcion): void {
-        $this->descripcion = $descripcion;
+        $this->descripcion = $this->db->real_escape_string($descripcion);
     }
 
 	public function setPrecio ($precio): void {
-        $this->precio = $precio;
+        $this->precio = $this->db->real_escape_string($precio);
     }
 	
 	public function setStock ($stock): void {
-        $this->stock = $stock;
+        $this->stock = $this->db->real_escape_string($stock);
     }
 	
 	public function setOferta ($oferta): void {
-        $this->oferta = $oferta;
+        $this->oferta = $this->db->real_escape_string($oferta);
     }
 	
 	public function setFecha ($fecha): void {
@@ -83,5 +97,5 @@ class Producto {
 	public function setImagen ($imagen): void {
         $this->imagen = $imagen;
     }
-
+	
 }
