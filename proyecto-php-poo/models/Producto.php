@@ -14,12 +14,29 @@ class Producto {
     
     public function __construct() {
         $this->db = Database::connect();
-		$this->imagen = "";
+        $this->imagen = "";
     }
 	
-	public function getAll() {
-		return $this->db->query("SELECT * FROM productos");
-	}
+    public function getAll() {
+            return $this->db->query("SELECT * FROM productos");
+    }
+
+    public function getAllCategory() {
+            return $this->db->query("SELECT p.*, c.nombre as 'catnombre' "
+                    . "FROM productos p "
+                    . "INNER JOIN categorias c "
+                    . "ON c.id = p.categoria_id "
+                    . "WHERE c.id={$this->categoria_id} "
+                    . "ORDER BY p.id DESC");
+    }
+    
+    public function getRandom($limit) {
+        return $this->db->query("SELECT * FROM productos ORDER BY RAND() LIMIT $limit");
+    }
+    
+    public function getOne() {
+        return $this->db->query("SELECT * FROM productos WHERE id={$this->id}")->fetch_object();
+    }
 	
     public function save() {
         $sql = "INSERT INTO productos VALUES(null, {$this->categoria_id},'{$this->nombre}', '{$this->descripcion}', {$this->precio}, {$this->stock}, NULL, CURDATE(), '{$this->imagen}');";
@@ -30,13 +47,26 @@ class Producto {
         return $save;
     }
 	
-	public function delete() {
-		$sql = "DELETE FROM productos WHERE id={$this->id}";
-		$del = $this->db->query($sql);
-		
-		return $del;
-	}
+    public function delete() {
+            $sql = "DELETE FROM productos WHERE id={$this->id}";
+            $del = $this->db->query($sql);
+
+            return $del;
+    }
 	
+    public function edit() {
+        $sql = "UPDATE productos SET categoria_id={$this->categoria_id}, nombre='{$this->nombre}', descripcion='{$this->descripcion}', precio={$this->precio}, stock={$this->stock}";
+        
+        if(!empty($this->imagen))
+            $sql.= ", imagen='{$this->imagen}'";
+        
+        $sql.= " WHERE id={$this->id}";        
+        
+        $edit = $this->db->query($sql);
+		
+        return $edit;
+    }
+    
 	public function getId() {
         return $this->id;
     }

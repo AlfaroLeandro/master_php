@@ -5,6 +5,8 @@ require_once 'models/Producto.php';
 class ProductoController {
     public function index() {
         //http://localhost/master_php/proyecto-php-poo/?controller=Producto&action=index
+        $productos = (new Producto)->getRandom(CANT_PRODUCTOS_DESTACADOS_MOSTRAR);
+        
         require_once './views/producto/destacados.php';
     }
 	
@@ -52,8 +54,16 @@ class ProductoController {
 					move_uploaded_file($file['tmp_name'], 'uploads/images/' . $filename);
 					
 				}
-				
-				if($producto_nuevo->save()) 
+                                
+                                if(isset($_GET['id']))
+                                {
+                                    $producto_nuevo->setId($_GET['id']);
+                                    $save = $producto_nuevo->edit();
+                                }
+				else
+                                    $save = $producto_nuevo->save();
+                                
+				if($save ) 
 					$_SESSION['producto'] = 'complete';
 				else
 					$_SESSION['producto'] = 'failed';
@@ -67,7 +77,16 @@ class ProductoController {
 	}
 	
 	public function editar() {
-		var_dump($_GET);
+	    if(Utils::isAdmin() && isset($_GET) && isset($_GET["producto"])) {
+                
+                $p = new Producto;
+                $p->setId($_GET["producto"]);
+                $producto = $p->getOne();
+                
+                require_once 'views/producto/crear.php';
+            }
+            else
+                header("Location: " . BASE_URL . "producto/gestion");
 	}
 	
 	public function eliminar() {		
@@ -83,4 +102,14 @@ class ProductoController {
 		}
 	header("Location: " . BASE_URL . "producto/gestion");
 	}
+        
+        public function ver() { 
+            if(isset($_GET["producto"])) {
+                $p = new Producto;
+                $p->setId($_GET["producto"]);
+                $pro = $p->getOne();    
+            }
+
+            require_once 'views/producto/ver.php';
+        }
 }

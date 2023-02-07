@@ -3,6 +3,15 @@
 <aside id="lateral">
 
     <div id="login" class="block-aside">
+        <h3>Mi carrito</h3>
+        <ul>
+            <li> <a href="<?=BASE_URL?>carrito/index"> Productos () </a> </li>
+            <li> <a href="<?=BASE_URL?>carrito/index"> Total </a> </li>
+            <li> <a href="<?=BASE_URL?>carrito/index"> Ver carrito </a> </li>
+        </ul>
+    </div>
+    
+    <div id="login" class="block-aside">
 
         <?php 
             if(!isset($_SESSION['login'])):

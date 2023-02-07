@@ -9,6 +9,18 @@ class Categoria {
         $this->db = Database::connect();
     }
     
+    public function getAll() {
+        return $this->db->query("SELECT * FROM categorias ORDER BY id DESC;");
+    }
+
+    public function getOne() {
+        return $this->db->query("SELECT * FROM categorias WHERE id={$this->id};")->fetch_object();
+    }
+	
+    public function save() {
+        return $this->db->query("INSERT INTO categorias VALUES(null, '{$this->nombre}');");
+    }
+    
     public function getId() {
         return $this->id;
     }
@@ -24,13 +36,4 @@ class Categoria {
     public function setNombre($nombre): void {
         $this->nombre = $nombre;
     }
-    
-    public function getAll() {
-        $categorias = $this->db->query("SELECT * FROM categorias ORDER BY id DESC;");
-        return $categorias;
-    }
-	
-	public function save() {
-		$this->db->query("INSERT INTO categorias VALUES(null, '{$this->nombre}');");
-	}
 }

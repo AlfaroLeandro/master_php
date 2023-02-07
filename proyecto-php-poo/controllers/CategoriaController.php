@@ -1,6 +1,7 @@
 <?php
 
 require_once 'models/Categoria.php';
+require_once 'models/producto.php';
 
 class CategoriaController {
     public function index() {		
@@ -28,4 +29,20 @@ class CategoriaController {
 		
 		header("Location: " . BASE_URL . "categoria/index");
 	}
+        
+        public function ver() {
+            if(isset($_GET['id'])) {
+                //Conseguir categoria
+                $categoria = new Categoria();
+                $categoria->setId($_GET['id']);
+                $categoria = $categoria->getOne();
+                
+                //Conseguir productos
+                $productos = new Producto();
+                $productos->setCategoria_id($_GET['id']);
+                $productos = $productos->getAllCategory();
+            }
+                
+            require_once 'views/categoria/ver.php';
+        }
 }

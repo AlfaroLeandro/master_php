@@ -24,7 +24,7 @@
             <nav id="menu">
                 <ul>
                     <li>
-                        <a href="#">Inicio</a>
+                        <a href="<?=BASE_URL?>">Inicio</a>
                     </li>
 					
 					<?php 
@@ -33,7 +33,7 @@
 					?>
 					
                     <li>
-                        <a href="#"><?=$cat->nombre?></a>
+                        <a href="<?=BASE_URL?>categoria/ver&id=<?=$cat->id?>"><?=$cat->nombre?></a>
                     </li>
 					
 					<?php
